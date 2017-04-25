@@ -27,7 +27,7 @@ class FormMonthSelectTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new MonthSelect();
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'name');
+        $this->expectException('Zend\Form\Exception\DomainException', 'name');
         $this->helper->render($element);
     }
 

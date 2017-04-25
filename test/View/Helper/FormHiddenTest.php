@@ -23,7 +23,7 @@ class FormHiddenTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element();
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'name');
+        $this->expectException('Zend\Form\Exception\DomainException', 'name');
         $this->helper->render($element);
     }
 

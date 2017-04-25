@@ -36,7 +36,7 @@
         "zendframework/zend-validator": "^2.6",
         "zendframework/zend-view": "^2.6.2",
         "zendframework/zendservice-recaptcha": "^3.0.0",
-        "phpunit/phpunit": "^4.8",
+        "phpunit/phpunit": "^6.0",
         "zendframework/zend-coding-standard": "~1.0.0"
     },
     "suggest": {

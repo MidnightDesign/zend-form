@@ -24,14 +24,14 @@ class FormImageTest extends CommonTestCase
     {
         $element = new Element();
         $element->setAttribute('src', 'foo.png');
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'name');
+        $this->expectException('Zend\Form\Exception\DomainException', 'name');
         $this->helper->render($element);
     }
 
     public function testRaisesExceptionWhenSrcIsNotPresentInElement()
     {
         $element = new Element('foo');
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'src');
+        $this->expectException('Zend\Form\Exception\DomainException', 'src');
         $this->helper->render($element);
     }
 

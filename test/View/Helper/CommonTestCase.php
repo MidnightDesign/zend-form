@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\View\Helper;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\View\HelperConfig;
 use Zend\View\Helper\Doctype;
 use Zend\View\Renderer\PhpRenderer;

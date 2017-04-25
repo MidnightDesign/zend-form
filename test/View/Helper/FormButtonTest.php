@@ -57,14 +57,14 @@ class FormButtonTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElementWhenPassedToOpenTag()
     {
         $element = new Element();
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'name');
+        $this->expectException('Zend\Form\Exception\DomainException', 'name');
         $this->helper->openTag($element);
     }
 
     public function testOpenTagWithWrongElementRaisesException()
     {
         $element = new \arrayObject();
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException', 'ArrayObject');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException', 'ArrayObject');
         $this->helper->openTag($element);
     }
 
@@ -206,7 +206,7 @@ class FormButtonTest extends CommonTestCase
     public function testRaisesExceptionWhenLabelAttributeIsNotPresentInElement()
     {
         $element = new Element('foo');
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'label');
+        $this->expectException('Zend\Form\Exception\DomainException', 'label');
         $markup = $this->helper->render($element);
     }
 
@@ -267,7 +267,7 @@ class FormButtonTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
         $mockTranslator->expects($this->exactly(1))
             ->method('translate')
             ->will($this->returnValue('translated content'));
@@ -283,7 +283,7 @@ class FormButtonTest extends CommonTestCase
     {
         $element = new Element('foo');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
         $mockTranslator->expects($this->exactly(1))
             ->method('translate')
             ->will($this->returnValue('translated content'));
@@ -297,7 +297,7 @@ class FormButtonTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->getMock('Zend\I18n\Translator\Translator');
+        $translatorMock = $this->createMock('Zend\I18n\Translator\Translator');
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());

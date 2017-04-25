@@ -81,7 +81,7 @@ class FormSelectTest extends CommonTestCase
         $element = $this->getElement();
         $element->setAttribute('value', ['value1', 'value2']);
 
-        $this->setExpectedException('Zend\Form\Exception\ExceptionInterface', 'multiple');
+        $this->expectException('Zend\Form\Exception\ExceptionInterface', 'multiple');
         $markup = $this->helper->render($element);
     }
 
@@ -236,7 +236,7 @@ class FormSelectTest extends CommonTestCase
         ]);
         $markup = $this->helper->render($element);
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
         $mockTranslator->expects($this->exactly(1))
         ->method('translate')
         ->will($this->returnValue('translated content'));
@@ -261,7 +261,7 @@ class FormSelectTest extends CommonTestCase
             ],
         ]);
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
         $mockTranslator->expects($this->at(0))
                        ->method('translate')
                        ->with('translate me')
@@ -287,7 +287,7 @@ class FormSelectTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->getMock('Zend\I18n\Translator\Translator');
+        $translatorMock = $this->createMock('Zend\I18n\Translator\Translator');
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());
@@ -401,7 +401,7 @@ class FormSelectTest extends CommonTestCase
     public function testRenderInputNotSelectElementRaisesException()
     {
         $element = new Element\Text('foo');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $this->helper->render($element);
     }
 
@@ -409,7 +409,7 @@ class FormSelectTest extends CommonTestCase
     {
         $element = new SelectElement();
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->expectException('Zend\Form\Exception\DomainException');
         $this->helper->render($element);
     }
 }
