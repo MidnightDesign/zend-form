@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -296,11 +296,10 @@ class FormRow extends AbstractHelper
     /**
      * Set the label position
      *
-     * @param  string $labelPosition
      * @throws \Zend\Form\Exception\InvalidArgumentException
      * @return FormRow
      */
-    public function setLabelPosition($labelPosition)
+    public function setLabelPosition(string $labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
         if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {

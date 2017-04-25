@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -291,12 +291,6 @@ class FormRowTest extends TestCase
         $this->assertContains('>translated content<', $markup);
         $this->assertContains('<label', $markup);
         $this->assertContains('</label>', $markup);
-    }
-
-    public function testSetLabelPositionInputNullRaisesException()
-    {
-        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
-        $this->helper->setLabelPosition(null);
     }
 
     public function testGetLabelPositionReturnsDefaultPrepend()

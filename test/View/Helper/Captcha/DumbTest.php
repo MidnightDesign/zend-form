@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -79,12 +79,6 @@ class DumbTest extends CommonTestCase
             . $this->helper->getSeparator(),
             $markup
         );
-    }
-
-    public function testSetCaptchaPositionWithNullRaisesException()
-    {
-        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
-        $this->helper->setCaptchaPosition(null);
     }
 
     public function testSetSeparator()

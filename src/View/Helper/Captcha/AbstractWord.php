@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -153,11 +153,10 @@ abstract class AbstractWord extends FormInput
     /**
      * Set value for captchaPosition
      *
-     * @param  mixed $captchaPosition
      * @throws Exception\InvalidArgumentException
      * @return AbstractWord
      */
-    public function setCaptchaPosition($captchaPosition)
+    public function setCaptchaPosition(string $captchaPosition)
     {
         $captchaPosition = strtolower($captchaPosition);
         if (! in_array($captchaPosition, [self::CAPTCHA_APPEND, self::CAPTCHA_PREPEND])) {

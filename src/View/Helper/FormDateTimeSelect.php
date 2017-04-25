@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -238,8 +238,8 @@ class FormDateTimeSelect extends FormDateSelectHelper
      */
     protected function getHoursOptions($pattern)
     {
-        $keyFormatter   = new IntlDateFormatter($this->getLocale(), null, null, null, null, 'HH');
-        $valueFormatter = new IntlDateFormatter($this->getLocale(), null, null, null, null, $pattern);
+        $keyFormatter   = new IntlDateFormatter($this->getLocale(), 0, 0, null, null, 'HH');
+        $valueFormatter = new IntlDateFormatter($this->getLocale(), 0, 0, null, null, $pattern);
         $date           = new DateTime('1970-01-01 00:00:00');
 
         $result = [];
@@ -262,8 +262,8 @@ class FormDateTimeSelect extends FormDateSelectHelper
      */
     protected function getMinutesOptions($pattern)
     {
-        $keyFormatter   = new IntlDateFormatter($this->getLocale(), null, null, null, null, 'mm');
-        $valueFormatter = new IntlDateFormatter($this->getLocale(), null, null, null, null, $pattern);
+        $keyFormatter   = new IntlDateFormatter($this->getLocale(), 0, 0, null, null, 'mm');
+        $valueFormatter = new IntlDateFormatter($this->getLocale(), 0, 0, null, null, $pattern);
         $date           = new DateTime('1970-01-01 00:00:00');
 
         $result = [];
@@ -286,8 +286,8 @@ class FormDateTimeSelect extends FormDateSelectHelper
      */
     protected function getSecondsOptions($pattern)
     {
-        $keyFormatter   = new IntlDateFormatter($this->getLocale(), null, null, null, null, 'ss');
-        $valueFormatter = new IntlDateFormatter($this->getLocale(), null, null, null, null, $pattern);
+        $keyFormatter   = new IntlDateFormatter($this->getLocale(), 0, 0, null, null, 'ss');
+        $valueFormatter = new IntlDateFormatter($this->getLocale(), 0, 0, null, null, $pattern);
         $date           = new DateTime('1970-01-01 00:00:00');
 
         $result = [];

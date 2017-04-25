@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -86,8 +86,8 @@ class FormDateSelect extends FormMonthSelectHelper
      */
     protected function getDaysOptions($pattern)
     {
-        $keyFormatter   = new IntlDateFormatter($this->getLocale(), null, null, null, null, 'dd');
-        $valueFormatter = new IntlDateFormatter($this->getLocale(), null, null, null, null, $pattern);
+        $keyFormatter   = new IntlDateFormatter($this->getLocale(), 0, 0, null, null, 'dd');
+        $valueFormatter = new IntlDateFormatter($this->getLocale(), 0, 0, null, null, $pattern);
         $date           = new DateTime('1970-01-01');
 
         $result = [];

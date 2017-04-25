@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -313,12 +313,6 @@ class FormMultiCheckboxTest extends CommonTestCase
         $this->helper->__invoke($element, 'append');
 
         $this->assertSame('append', $this->helper->getLabelPosition());
-    }
-
-    public function testSetLabelPositionInputNullRaisesException()
-    {
-        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
-        $this->helper->setLabelPosition(null);
     }
 
     public function testSetLabelAttributes()

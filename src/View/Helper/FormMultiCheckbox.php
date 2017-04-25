@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -300,11 +300,10 @@ class FormMultiCheckbox extends FormInput
     /**
      * Set value for labelPosition
      *
-     * @param  mixed $labelPosition
      * @throws Exception\InvalidArgumentException
      * @return FormMultiCheckbox
      */
-    public function setLabelPosition($labelPosition)
+    public function setLabelPosition(string $labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
         if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {
