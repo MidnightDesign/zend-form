@@ -12,6 +12,7 @@ namespace Zend\Form\Element;
 use Zend\Form\Element;
 use Zend\InputFilter\InputProviderInterface;
 use Zend\Validator\Uri as UriValidator;
+use Zend\Filter\StringTrim;
 
 class Url extends Element implements InputProviderInterface
 {
@@ -58,7 +59,7 @@ class Url extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => 'Zend\Filter\StringTrim'],
+                ['name' => StringTrim::class],
             ],
             'validators' => [
                 $this->getValidator(),

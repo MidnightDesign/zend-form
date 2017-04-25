@@ -405,7 +405,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     protected function prepareBooleanAttributeValue($attribute, $value)
     {
-        if (! is_bool($value) && in_array($value, $this->booleanAttributes[$attribute])) {
+        if (! is_bool($value) && in_array($value, $this->booleanAttributes[$attribute], true)) {
             return $value;
         }
 

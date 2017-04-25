@@ -7,6 +7,8 @@
 
 namespace Zend\Form;
 
+use Zend\ModuleManager\Feature\FormElementProviderInterface;
+
 class Module
 {
     /**
@@ -38,7 +40,7 @@ class Module
         $serviceListener->addServiceManager(
             'FormElementManager',
             'form_elements',
-            'Zend\ModuleManager\Feature\FormElementProviderInterface',
+            FormElementProviderInterface::class,
             'getFormElementConfig'
         );
     }

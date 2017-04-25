@@ -283,7 +283,7 @@ class Form extends Fieldset implements FormInterface
      */
     public function bind($object, $flags = FormInterface::VALUES_NORMALIZED)
     {
-        if (! in_array($flags, [FormInterface::VALUES_NORMALIZED, FormInterface::VALUES_RAW])) {
+        if (! in_array($flags, [FormInterface::VALUES_NORMALIZED, FormInterface::VALUES_RAW], true)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects the $flags argument to be one of "%s" or "%s"; received "%s"',
                 __METHOD__,
@@ -324,9 +324,6 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Bind values to the bound object
-     *
-     * @param array $values
-     * @return mixed
      */
     public function bindValues(array $values = [])
     {
@@ -395,13 +392,12 @@ class Form extends Fieldset implements FormInterface
     /**
      * Set flag indicating whether or not to bind values on successful validation
      *
-     * @param  int $bindOnValidateFlag
      * @return self
      * @throws Exception\InvalidArgumentException
      */
-    public function setBindOnValidate($bindOnValidateFlag)
+    public function setBindOnValidate(int $bindOnValidateFlag)
     {
-        if (! in_array($bindOnValidateFlag, [self::BIND_ON_VALIDATE, self::BIND_MANUAL])) {
+        if (! in_array($bindOnValidateFlag, [self::BIND_ON_VALIDATE, self::BIND_MANUAL], true)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects the flag to be one of %s::%s or %s::%s',
                 __METHOD__,

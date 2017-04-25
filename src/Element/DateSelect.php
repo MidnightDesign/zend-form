@@ -143,9 +143,8 @@ class DateSelect extends MonthSelect
      * Prepare the form element (mostly used for rendering purposes)
      *
      * @param  FormInterface $form
-     * @return mixed
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         parent::prepareElement($form);
 

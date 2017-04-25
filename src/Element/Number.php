@@ -15,6 +15,7 @@ use Zend\Validator\GreaterThan as GreaterThanValidator;
 use Zend\Validator\LessThan as LessThanValidator;
 use Zend\Validator\Regex as RegexValidator;
 use Zend\Validator\Step as StepValidator;
+use Zend\Filter\StringTrim;
 
 class Number extends Element implements InputProviderInterface
 {
@@ -72,8 +73,8 @@ class Number extends Element implements InputProviderInterface
             || 'any' !== $this->attributes['step']
         ) {
             $validators[] = new StepValidator([
-                'baseValue' => (isset($this->attributes['min'])) ? $this->attributes['min'] : 0,
-                'step'      => (isset($this->attributes['step'])) ? $this->attributes['step'] : 1,
+                'baseValue' => $this->attributes['min'] ?? 0,
+                'step'      => $this->attributes['step'] ?? 1,
             ]);
         }
 
@@ -94,7 +95,7 @@ class Number extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => 'Zend\Filter\StringTrim']
+                ['name' => StringTrim::class]
             ],
             'validators' => $this->getValidators(),
         ];

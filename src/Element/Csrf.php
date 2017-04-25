@@ -14,6 +14,7 @@ use Zend\Form\ElementPrepareAwareInterface;
 use Zend\Form\FormInterface;
 use Zend\InputFilter\InputProviderInterface;
 use Zend\Validator\Csrf as CsrfValidator;
+use Zend\Filter\StringTrim;
 
 class Csrf extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
@@ -138,7 +139,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => 'Zend\Filter\StringTrim'],
+                ['name' => StringTrim::class],
             ],
             'validators' => [
                 $this->getCsrfValidator(),

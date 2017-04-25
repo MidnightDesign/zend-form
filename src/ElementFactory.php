@@ -10,6 +10,7 @@
 namespace Zend\Form;
 
 use Interop\Container\ContainerInterface;
+use Traversable;
 use Zend\ServiceManager\Exception\InvalidServiceException;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;

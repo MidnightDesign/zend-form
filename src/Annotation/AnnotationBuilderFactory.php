@@ -78,9 +78,7 @@ class AnnotationBuilderFactory implements FactoryInterface
         }
 
         $config = $container->get('config');
-        $config = isset($config['form_annotation_builder'])
-            ? $config['form_annotation_builder']
-            : [];
+        $config = $config['form_annotation_builder'] ?? [];
 
         return is_array($config) ? $config : [];
     }

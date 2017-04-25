@@ -17,23 +17,6 @@ use Zend\Form\View\Helper\FormInput;
 class ReCaptcha extends FormInput
 {
     /**
-     * Invoke helper as functor
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface $element
-     * @return string
-     */
-    public function __invoke(ElementInterface $element = null)
-    {
-        if (! $element) {
-            return $this;
-        }
-
-        return $this->render($element);
-    }
-
-    /**
      * Render ReCaptcha form elements
      *
      * @param  ElementInterface $element
@@ -42,7 +25,7 @@ class ReCaptcha extends FormInput
      */
     public function render(ElementInterface $element)
     {
-        $attributes = $element->getAttributes();
+        $element->getAttributes();
         $captcha = $element->getCaptcha();
 
         if ($captcha === null || ! $captcha instanceof CaptchaAdapter) {

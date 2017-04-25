@@ -41,9 +41,9 @@ class Select extends Element implements InputProviderInterface
     /**
      * Create an empty option (option with label but no value). If set to null, no option is created
      *
-     * @var bool
+     * @var bool|null
      */
-    protected $emptyOption = null;
+    protected $emptyOption;
 
     /**
      * @var array
@@ -86,7 +86,7 @@ class Select extends Element implements InputProviderInterface
             ) {
                 $validator = $this->validator->getValidator();
             }
-            if (! empty($validator)) {
+            if (null !== $validator) {
                 $validator->setHaystack($this->getValueOptionsValues());
             }
         }

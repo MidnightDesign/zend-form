@@ -14,6 +14,7 @@ use Zend\Captcha as ZendCaptcha;
 use Zend\Form\Element;
 use Zend\Form\Exception;
 use Zend\InputFilter\InputProviderInterface;
+use Zend\Filter\StringTrim;
 
 class Captcha extends Element implements InputProviderInterface
 {
@@ -87,7 +88,7 @@ class Captcha extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => 'Zend\Filter\StringTrim'],
+                ['name' => StringTrim::class],
             ],
         ];
 

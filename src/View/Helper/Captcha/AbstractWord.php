@@ -37,23 +37,6 @@ abstract class AbstractWord extends FormInput
     protected $separator = '';
 
     /**
-     * Invoke helper as functor
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface $element
-     * @return string
-     */
-    public function __invoke(ElementInterface $element = null)
-    {
-        if (! $element) {
-            return $this;
-        }
-
-        return $this->render($element);
-    }
-
-    /**
      * Render captcha form elements for the given element
      *
      * Creates and returns:
@@ -159,7 +142,7 @@ abstract class AbstractWord extends FormInput
     public function setCaptchaPosition(string $captchaPosition)
     {
         $captchaPosition = strtolower($captchaPosition);
-        if (! in_array($captchaPosition, [self::CAPTCHA_APPEND, self::CAPTCHA_PREPEND])) {
+        if (! in_array($captchaPosition, [self::CAPTCHA_APPEND, self::CAPTCHA_PREPEND], true)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either %s::CAPTCHA_APPEND or %s::CAPTCHA_PREPEND; received "%s"',
                 __METHOD__,

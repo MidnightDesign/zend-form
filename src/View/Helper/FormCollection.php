@@ -10,7 +10,7 @@
 namespace Zend\Form\View\Helper;
 
 use RuntimeException;
-use Zend\Form\Element;
+
 use Zend\Form\ElementInterface;
 use Zend\Form\Element\Collection as CollectionElement;
 use Zend\Form\FieldsetInterface;
@@ -128,7 +128,7 @@ class FormCollection extends AbstractHelper
             $label = $element->getLabel();
             $legend = '';
 
-            if (! empty($label)) {
+            if (null !== $label) {
                 if (null !== ($translator = $this->getTranslator())) {
                     $label = $translator->translate(
                         $label,

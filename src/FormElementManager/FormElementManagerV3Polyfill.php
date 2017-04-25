@@ -298,7 +298,7 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
         $lastInitializer  = [$this, 'callElementInit'];
 
         foreach ([$firstInitializer, $lastInitializer] as $default) {
-            if (false === ($index = array_search($default, $this->initializers))) {
+            if (false === ($index = array_search($default, $this->initializers, true))) {
                 continue;
             }
             unset($this->initializers[$index]);

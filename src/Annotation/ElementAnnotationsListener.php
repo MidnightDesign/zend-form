@@ -11,6 +11,10 @@ namespace Zend\Form\Annotation;
 
 use Zend\EventManager\EventManagerInterface;
 use Zend\Stdlib\ArrayObject;
+use Zend\Form\Fieldset;
+use Zend\InputFilter\InputFilter;
+use Zend\Form\Element\Collection;
+use Zend\Form\InputFilterProviderFieldset;
 
 /**
  * Default listeners for element annotations
@@ -134,16 +138,16 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
                 //use input filter provider fieldset so we can compose the input filter into the fieldset
                 //it is assumed that if someone uses a custom fieldset, they will take care of the input
                 //filtering themselves or consume the input_filter_spec option.
-                $specification['type'] = 'Zend\Form\InputFilterProviderFieldset';
+                $specification['type'] = InputFilterProviderFieldset::class;
             }
 
             $inputFilter = $specification['input_filter'];
             if (! isset($inputFilter['type'])) {
-                $inputFilter['type'] = 'Zend\InputFilter\InputFilter';
+                $inputFilter['type'] = InputFilter::class;
             }
             unset($specification['input_filter']);
 
-            $elementSpec['spec']['type'] = 'Zend\Form\Element\Collection';
+            $elementSpec['spec']['type'] = Collection::class;
             $elementSpec['spec']['name'] = $name;
             $elementSpec['spec']['options'] = new ArrayObject($this->mergeOptions($elementSpec, $annotation));
             $elementSpec['spec']['options']['target_element'] = $specification;
@@ -156,18 +160,18 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             // Compose input filter into parent input filter
             $inputFilter = $specification['input_filter'];
             if (! isset($inputFilter['type'])) {
-                $inputFilter['type'] = 'Zend\InputFilter\InputFilter';
+                $inputFilter['type'] = InputFilter::class;
             }
             $e->setParam('inputSpec', $inputFilter);
             unset($specification['input_filter']);
 
             // Compose specification as a fieldset into parent form/fieldset
             if (! isset($specification['type'])) {
-                $specification['type'] = 'Zend\Form\Fieldset';
+                $specification['type'] = Fieldset::class;
             }
 
             if (isset($elementSpec['spec']['options'])) {
-                $specification['options'] = isset($specification['options']) ? $specification['options'] : [];
+                $specification['options'] = $specification['options'] ?? [];
                 $specification['options'] = array_merge($elementSpec['spec']['options'], $specification['options']);
             }
 
@@ -225,7 +229,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
     public function handleExcludeAnnotation($e)
     {
         $annotations = $e->getParam('annotations');
-        if ($annotations->hasAnnotation('Zend\Form\Annotation\Exclude')) {
+        if ($annotations->hasAnnotation(Exclude::class)) {
             return true;
         }
         return false;

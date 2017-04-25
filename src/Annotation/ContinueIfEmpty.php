@@ -34,9 +34,7 @@ class ContinueIfEmpty
      */
     public function __construct(array $data)
     {
-        $continueIfEmpty = (isset($data['value']))
-            ? $data['value']
-            : false;
+        $continueIfEmpty = $data['value'] ?? false;
 
         if (! is_bool($continueIfEmpty)) {
             $filter = new BooleanFilter();

@@ -17,6 +17,7 @@ use Zend\Validator\Date as DateValidator;
 use Zend\Validator\DateStep as DateStepValidator;
 use Zend\Validator\GreaterThan as GreaterThanValidator;
 use Zend\Validator\LessThan as LessThanValidator;
+use Zend\Filter\StringTrim;
 
 class DateTime extends Element implements InputProviderInterface
 {
@@ -160,11 +161,9 @@ class DateTime extends Element implements InputProviderInterface
     protected function getStepValidator()
     {
         $format    = $this->getFormat();
-        $stepValue = (isset($this->attributes['step']))
-                   ? $this->attributes['step'] : 1; // Minutes
+        $stepValue = $this->attributes['step'] ?? 1; // Minutes
 
-        $baseValue = (isset($this->attributes['min']))
-                   ? $this->attributes['min'] : date($format, 0);
+        $baseValue = $this->attributes['min'] ?? date($format, 0);
 
         return new DateStepValidator([
             'format'    => $format,
@@ -186,7 +185,7 @@ class DateTime extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => 'Zend\Filter\StringTrim'],
+                ['name' => StringTrim::class],
             ],
             'validators' => $this->getValidators(),
         ];

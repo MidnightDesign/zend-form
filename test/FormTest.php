@@ -746,7 +746,7 @@ class FormTest extends TestCase
 
     public function testCanDisableBindOnValidateFunctionality()
     {
-        $this->form->setBindOnValidate(false);
+        $this->form->setBindOnValidate(Form::BIND_MANUAL);
         $this->assertFalse($this->form->bindOnValidate());
     }
 
@@ -763,7 +763,7 @@ class FormTest extends TestCase
         ];
         $this->populateForm();
         $this->form->setHydrator(new Hydrator\ObjectProperty());
-        $this->form->setBindOnValidate(false);
+        $this->form->setBindOnValidate(Form::BIND_MANUAL);
         $this->form->bind($model);
         $this->form->setData($validSet);
         $this->form->isValid();
@@ -1037,7 +1037,7 @@ class FormTest extends TestCase
 
         $form = new TestAsset\CreateAddressForm();
         $form->bind($address);
-        $form->setBindOnValidate(false);
+        $form->setBindOnValidate(0);
 
         $this->assertEquals(true, $form->isValid());
         $this->assertEquals($address, $form->getData());
@@ -1082,7 +1082,7 @@ class FormTest extends TestCase
 
         $form = new TestAsset\NewProductForm();
         $form->bind($product);
-        $form->setBindOnValidate(false);
+        $form->setBindOnValidate(Form::BIND_MANUAL);
 
         $this->assertEquals(true, $form->isValid());
         $this->assertEquals($product, $form->getData());

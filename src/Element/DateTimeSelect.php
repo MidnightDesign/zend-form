@@ -280,7 +280,7 @@ class DateTimeSelect extends DateSelect
      * @param  FormInterface $form
      * @return void
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         parent::prepareElement($form);
 

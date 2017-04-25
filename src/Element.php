@@ -155,12 +155,12 @@ class Element implements
      * Return the specified option
      *
      * @param string $option
-     * @return NULL|mixed
+     * @return null|mixed
      */
     public function getOption($option)
     {
         if (! isset($this->options[$option])) {
-            return;
+            return null;
         }
 
         return $this->options[$option];
@@ -206,7 +206,7 @@ class Element implements
     public function getAttribute($key)
     {
         if (! isset($this->attributes[$key])) {
-            return;
+            return null;
         }
 
         return $this->attributes[$key];
@@ -446,7 +446,7 @@ class Element implements
     public function getLabelOption($key)
     {
         if (! isset($this->labelOptions[$key])) {
-            return;
+            return null;
         }
 
         return $this->labelOptions[$key];

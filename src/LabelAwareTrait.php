@@ -131,7 +131,7 @@ trait LabelAwareTrait
     public function getLabelOption($key)
     {
         if (! array_key_exists($key, $this->labelOptions)) {
-            return;
+            return null;
         }
         return $this->labelOptions[$key];
     }

@@ -14,6 +14,7 @@ use Zend\InputFilter\InputProviderInterface;
 use Zend\Validator\Explode as ExplodeValidator;
 use Zend\Validator\Regex as RegexValidator;
 use Zend\Validator\ValidatorInterface;
+use Zend\Filter\StringTrim;
 
 class Email extends Element implements InputProviderInterface
 {
@@ -46,8 +47,7 @@ class Email extends Element implements InputProviderInterface
         if (null === $this->validator) {
             $emailValidator = $this->getEmailValidator();
 
-            $multiple = (isset($this->attributes['multiple']))
-                      ? $this->attributes['multiple'] : null;
+            $multiple = $this->attributes['multiple'] ?? null;
 
             if (true === $multiple || 'multiple' === $multiple) {
                 $this->validator = new ExplodeValidator([
@@ -129,7 +129,7 @@ class Email extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => 'Zend\Filter\StringTrim'],
+                ['name' => StringTrim::class],
             ],
             'validators' => [
                 $this->getValidator(),

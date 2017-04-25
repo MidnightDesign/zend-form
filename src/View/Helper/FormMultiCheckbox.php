@@ -197,7 +197,7 @@ class FormMultiCheckbox extends FormInput
                 $disabled = $optionSpec['disabled'];
             }
             if (isset($optionSpec['label_attributes'])) {
-                $labelAttributes = (isset($labelAttributes))
+                $labelAttributes = isset($labelAttributes)
                     ? array_merge($labelAttributes, $optionSpec['label_attributes'])
                     : $optionSpec['label_attributes'];
             }
@@ -205,7 +205,7 @@ class FormMultiCheckbox extends FormInput
                 $inputAttributes = array_merge($inputAttributes, $optionSpec['attributes']);
             }
 
-            if (in_array($value, $selectedOptions)) {
+            if (in_array($value, $selectedOptions, true)) {
                 $selected = true;
             }
 
@@ -259,9 +259,7 @@ class FormMultiCheckbox extends FormInput
     {
         $closingBracket = $this->getInlineClosingBracket();
 
-        $uncheckedValue = $element->getUncheckedValue()
-            ? $element->getUncheckedValue()
-            : $this->uncheckedValue;
+        $uncheckedValue = $element->getUncheckedValue() ?: $this->uncheckedValue;
 
         $hiddenAttributes = [
             'name'  => $element->getName(),
@@ -306,7 +304,7 @@ class FormMultiCheckbox extends FormInput
     public function setLabelPosition(string $labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
-        if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {
+        if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND], true)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either %s::LABEL_APPEND or %s::LABEL_PREPEND; received "%s"',
                 __METHOD__,

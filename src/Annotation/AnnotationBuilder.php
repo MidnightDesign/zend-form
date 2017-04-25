@@ -22,6 +22,8 @@ use Zend\Form\Exception;
 use Zend\Form\Factory;
 use Zend\Form\FormFactoryAwareInterface;
 use Zend\Stdlib\ArrayUtils;
+use Zend\Form\FieldsetInterface;
+use Zend\Form\Element;
 
 /**
  * Parses the properties of a class for annotations in order to create a form
@@ -342,13 +344,11 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         }
 
         $elementSpec = $params['elementSpec'];
-        $type        = (isset($elementSpec['spec']['type']))
-            ? $elementSpec['spec']['type']
-            : 'Zend\Form\Element';
+        $type        = $elementSpec['spec']['type'] ?? 'Zend\Form\Element';
 
         // Compose as a fieldset or an element, based on specification type.
         // If preserve defined order is true, all elements are composed as elements to keep their ordering
-        if (! $this->preserveDefinedOrder() && is_subclass_of($type, 'Zend\Form\FieldsetInterface')) {
+        if (! $this->preserveDefinedOrder() && is_subclass_of($type, FieldsetInterface::class)) {
             if (! isset($formSpec['fieldsets'])) {
                 $formSpec['fieldsets'] = [];
             }

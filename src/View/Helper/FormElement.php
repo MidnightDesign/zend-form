@@ -11,6 +11,13 @@ namespace Zend\Form\View\Helper;
 
 use Zend\Form\ElementInterface;
 use Zend\View\Helper\AbstractHelper as BaseAbstractHelper;
+use Zend\Form\Element\MonthSelect;
+use Zend\Form\Element\DateSelect;
+use Zend\Form\Element\DateTimeSelect;
+use Zend\Form\Element\Collection;
+use Zend\Form\Element\Csrf;
+use Zend\Form\Element\Captcha;
+use Zend\Form\Element\Button;
 
 class FormElement extends BaseAbstractHelper
 {
@@ -22,13 +29,13 @@ class FormElement extends BaseAbstractHelper
      * @var array
      */
     protected $classMap = [
-        'Zend\Form\Element\Button'         => 'formbutton',
-        'Zend\Form\Element\Captcha'        => 'formcaptcha',
-        'Zend\Form\Element\Csrf'           => 'formhidden',
-        'Zend\Form\Element\Collection'     => 'formcollection',
-        'Zend\Form\Element\DateTimeSelect' => 'formdatetimeselect',
-        'Zend\Form\Element\DateSelect'     => 'formdateselect',
-        'Zend\Form\Element\MonthSelect'    => 'formmonthselect',
+        Button::class => 'formbutton',
+        Captcha::class => 'formcaptcha',
+        Csrf::class => 'formhidden',
+        Collection::class => 'formcollection',
+        DateTimeSelect::class => 'formdatetimeselect',
+        DateSelect::class => 'formdateselect',
+        MonthSelect::class => 'formmonthselect',
     ];
 
     /**
@@ -187,7 +194,7 @@ class FormElement extends BaseAbstractHelper
                 return $this->renderHelper($pluginName, $element);
             }
         }
-        return;
+        return null;
     }
 
     /**
@@ -203,6 +210,6 @@ class FormElement extends BaseAbstractHelper
         if (isset($this->typeMap[$type])) {
             return $this->renderHelper($this->typeMap[$type], $element);
         }
-        return;
+        return null;
     }
 }

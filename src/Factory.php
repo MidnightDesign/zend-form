@@ -112,7 +112,7 @@ class Factory
     public function create($spec)
     {
         $spec = $this->validateSpecification($spec, __METHOD__);
-        $type = isset($spec['type']) ? $spec['type'] : Element::class;
+        $type = $spec['type'] ?? Element::class;
 
         $element = $this->getFormElementManager()->get($type);
 
@@ -202,9 +202,9 @@ class Factory
     {
         $spec = $this->validateSpecification($spec, __METHOD__);
 
-        $name       = isset($spec['name']) ? $spec['name'] : null;
-        $options    = isset($spec['options']) ? $spec['options'] : null;
-        $attributes = isset($spec['attributes']) ? $spec['attributes'] : null;
+        $name       = $spec['name'] ?? null;
+        $options    = $spec['options'] ?? null;
+        $attributes = $spec['attributes'] ?? null;
 
         if ($name !== null && $name !== '') {
             $element->setName($name);
@@ -261,7 +261,7 @@ class Factory
             $this->prepareAndInjectFieldsets($spec['fieldsets'], $fieldset, __METHOD__);
         }
 
-        $factory = (isset($spec['factory']) ? $spec['factory'] : $this);
+        $factory = ($spec['factory'] ?? $this);
         $this->prepareAndInjectFactory($factory, $fieldset, __METHOD__);
 
         return $fieldset;
@@ -346,11 +346,11 @@ class Factory
                 continue;
             }
 
-            $flags = isset($elementSpecification['flags']) ? $elementSpecification['flags'] : [];
-            $spec  = isset($elementSpecification['spec']) ? $elementSpecification['spec'] : [];
+            $flags = $elementSpecification['flags'] ?? [];
+            $spec  = $elementSpecification['spec'] ?? [];
 
             if (! isset($spec['type'])) {
-                $spec['type'] = 'Zend\Form\Element';
+                $spec['type'] = Element::class;
             }
 
             $element = $this->create($spec);
@@ -371,8 +371,8 @@ class Factory
         $fieldsets = $this->validateSpecification($fieldsets, $method);
 
         foreach ($fieldsets as $fieldsetSpecification) {
-            $flags = isset($fieldsetSpecification['flags']) ? $fieldsetSpecification['flags'] : [];
-            $spec  = isset($fieldsetSpecification['spec']) ? $fieldsetSpecification['spec'] : [];
+            $flags = $fieldsetSpecification['flags'] ?? [];
+            $spec  = $fieldsetSpecification['spec'] ?? [];
 
             $fieldset = $this->createFieldset($spec);
             $masterFieldset->add($fieldset, $flags);
@@ -439,7 +439,7 @@ class Factory
                     $method
                 ));
             }
-            $hydratorOptions = (isset($hydratorOrName['options'])) ? $hydratorOrName['options'] : [];
+            $hydratorOptions = $hydratorOrName['options'] ?? [];
             $hydratorOrName = $hydratorOrName['type'];
         } else {
             $hydratorOptions = [];
@@ -568,14 +568,12 @@ class Factory
      */
     protected function prepareAndInjectValidationGroup($spec, FormInterface $form, $method)
     {
-        if (! is_array($spec)) {
-            if (! class_exists($spec)) {
-                throw new Exception\DomainException(sprintf(
-                    '%s expects an array for validation group; received "%s"',
-                    $method,
-                    $spec
-                ));
-            }
+        if (! is_array($spec) && ! class_exists($spec)) {
+            throw new Exception\DomainException(sprintf(
+                '%s expects an array for validation group; received "%s"',
+                $method,
+                $spec
+            ));
         }
 
         $form->setValidationGroup($spec);

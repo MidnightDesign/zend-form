@@ -13,6 +13,7 @@ use Zend\Form\Element;
 use Zend\Form\ElementPrepareAwareInterface;
 use Zend\Form\FormInterface;
 use Zend\InputFilter\InputProviderInterface;
+use Zend\InputFilter\FileInput;
 
 class File extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
@@ -29,9 +30,8 @@ class File extends Element implements InputProviderInterface, ElementPrepareAwar
      * Prepare the form element (mostly used for rendering purposes)
      *
      * @param  FormInterface $form
-     * @return mixed
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         // Ensure the form is using correct enctype
         $form->setAttribute('enctype', 'multipart/form-data');
@@ -46,7 +46,7 @@ class File extends Element implements InputProviderInterface, ElementPrepareAwar
     public function getInputSpecification()
     {
         return [
-            'type'     => 'Zend\InputFilter\FileInput',
+            'type'     => FileInput::class,
             'name'     => $this->getName(),
             'required' => false,
         ];

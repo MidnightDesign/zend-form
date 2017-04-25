@@ -12,9 +12,9 @@ namespace Zend\Form;
 trait FormFactoryAwareTrait
 {
     /**
-     * @var Factory
+     * @var Factory|null
      */
-    protected $factory = null;
+    protected $factory;
 
     /**
      * Compose a form factory into the object

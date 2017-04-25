@@ -12,6 +12,8 @@ namespace Zend\Form\Element;
 use Zend\Form\Element;
 use Zend\InputFilter\InputProviderInterface;
 use Zend\Validator\Regex as RegexValidator;
+use Zend\Filter\StringToLower;
+use Zend\Filter\StringTrim;
 
 class Color extends Element implements InputProviderInterface
 {
@@ -55,8 +57,8 @@ class Color extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => 'Zend\Filter\StringTrim'],
-                ['name' => 'Zend\Filter\StringToLower'],
+                ['name' => StringTrim::class],
+                ['name' => StringToLower::class],
             ],
             'validators' => [
                 $this->getValidator(),

@@ -96,7 +96,7 @@ class FormRow extends AbstractHelper
             return $this;
         }
 
-        if (is_null($labelPosition)) {
+        if (null === $labelPosition) {
             $labelPosition = $this->getLabelPosition();
         }
 
@@ -129,7 +129,7 @@ class FormRow extends AbstractHelper
         $label           = $element->getLabel();
         $inputErrorClass = $this->getInputErrorClass();
 
-        if (is_null($labelPosition)) {
+        if (null === $labelPosition) {
             $labelPosition = $this->labelPosition;
         }
 
@@ -143,7 +143,7 @@ class FormRow extends AbstractHelper
         // Does this element have errors ?
         if (count($element->getMessages()) > 0 && ! empty($inputErrorClass)) {
             $classAttributes = ($element->hasAttribute('class') ? $element->getAttribute('class') . ' ' : '');
-            $classAttributes = $classAttributes . $inputErrorClass;
+            $classAttributes .= $inputErrorClass;
 
             $element->setAttribute('class', $classAttributes);
         }
@@ -302,7 +302,7 @@ class FormRow extends AbstractHelper
     public function setLabelPosition(string $labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
-        if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {
+        if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND], true)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either %s::LABEL_APPEND or %s::LABEL_PREPEND; received "%s"',
                 __METHOD__,

@@ -217,7 +217,7 @@ class Fieldset extends Element implements FieldsetInterface
     {
         if (! $this->has($elementOrFieldset)) {
             throw new Exception\InvalidElementException(sprintf(
-                "No element by the name of [%s] found in form",
+                'No element by the name of [%s] found in form',
                 $elementOrFieldset
             ));
         }
@@ -559,7 +559,7 @@ class Fieldset extends Element implements FieldsetInterface
      * @param array $values
      * @param array $validationGroup
      *
-     * @return mixed|void
+     * @return mixed
      */
     public function bindValues(array $values = [], array $validationGroup = null)
     {
@@ -571,7 +571,7 @@ class Fieldset extends Element implements FieldsetInterface
             $name = $element->getName();
 
             if ($validationGroup
-                && (! array_key_exists($name, $validationGroup) && ! in_array($name, $validationGroup))
+                && (! array_key_exists($name, $validationGroup) && ! in_array($name, $validationGroup, true))
             ) {
                 continue;
             }
